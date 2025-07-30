@@ -11,6 +11,7 @@ The intention of this sample is to demonstrate the basic syntax and properties r
 - JDK 11+
 - Maven 3.6+
 - Gateway 2.0 enabled Azure Cosmos DB account
+- azure-cosmos versions 4.73.1+ (included in project pom.xml)
 - Setting of the following JVM properties (shown in Main.java setup):
   - `COSMOS.THINCLIENT_ENABLED=true`
   - `COSMOS.HTTP2_ENABLED=true`
@@ -29,7 +30,7 @@ src/
 │   │           ├── GatewayV2CrudSuite.java     # Suite for performing CRUD operations
 │   │           ├── GatewayV2QuerySuite.java    # Suite for performing query operations
 │   │           ├── Main.java                   # Application entry point
-│   │           ├── Utils.java                  # Utils
+│   │           └── Utils.java                  # Utils
 │   └── resources/
 │       └── simplelogger.properties             # Logging configuration
 ```

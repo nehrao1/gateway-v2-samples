@@ -70,7 +70,6 @@ public class Main {
                 .endpoint(endpoint)
                 .key(key)
                 .gatewayMode()
-                .consistencyLevel(ConsistencyLevel.SESSION)
                 .buildAsyncClient();
 
         System.out.println("CosmosAsyncClient created with endpoint: " + endpoint);
