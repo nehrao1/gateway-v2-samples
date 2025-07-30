@@ -11,7 +11,7 @@ The intention of this sample is to demonstrate the basic syntax and properties r
 - JDK 11+
 - Maven 3.6+
 - Gateway 2.0 enabled Azure Cosmos DB account
-- azure-cosmos versions 4.73.1+ (included in project pom.xml)
+- azure-cosmos version 4.73.1+ (included in project pom.xml)
 - Setting of the following JVM properties (shown in Main.java setup):
   - `COSMOS.THINCLIENT_ENABLED=true`
   - `COSMOS.HTTP2_ENABLED=true`
