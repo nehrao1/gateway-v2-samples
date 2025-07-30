@@ -89,10 +89,14 @@ public class GatewayV2BatchSuite {
             if (items.size() == expected.size() && new HashSet<>(items).containsAll(expected)) {
                 System.out.println("Query results match expected items.");
             } else {
-                System.out.println("Query results do not match expected items.");
+                String errorMessage = "Query results do not match expected items.";
+                System.out.println(errorMessage);
+                throw new RuntimeException(errorMessage);
             }
         } else {
-            System.out.println("Query execution failed");
+            String errorMessage = "Query execution failed";
+            System.out.println(errorMessage);
+            throw new RuntimeException(errorMessage);
         }
     }
 }

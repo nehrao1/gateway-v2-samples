@@ -40,7 +40,7 @@ class GatewayV2CrudSuite {
             String id3 = UUID.randomUUID().toString();
             Customer customer3 = new Customer(id3, partitionKeyValue, "Jane Doe", "Chicago");
             CosmosItemResponse<Customer> upsertResponse = container.upsertItem(customer3, new PartitionKey(partitionKeyValue), new CosmosItemRequestOptions()).block();
-            validate(upsertResponse, 200, OperationType.Upsert);
+            validate(upsertResponse, 201, OperationType.Upsert);
 
             CosmosItemResponse<Customer> readAfterUpsertResponse = container.readItem(id3, new PartitionKey(partitionKeyValue), Customer.class).block();
             validate(readAfterUpsertResponse, 200, OperationType.Read);
@@ -73,8 +73,12 @@ class GatewayV2CrudSuite {
                 Customer c = response.getItem();
                 System.out.println("Item read: " + response.getItem().toString());
             }
+            // Validate that the operation used the Gateway 2.0 endpoint
+            Utils.validateThinClientEndpointUsed(response.getDiagnostics());
         } else {
-            System.out.println("Operation type " + operationType + " failed with status code " + response.getStatusCode());
+            String errorMessage = "Operation type " + operationType + " failed with status code " + response.getStatusCode();
+            System.out.println(errorMessage);
+            throw new RuntimeException(errorMessage);
         }
     }
 }

@@ -88,9 +88,9 @@ class GatewayV2QuerySuite {
         if (actual.size() == expected.size() && new HashSet<>(actual).containsAll(expected)) {
             System.out.println("Query results match expected items.");
         } else {
-            System.out.println("Query results do not match expected items.");
+            String errorMessage = "Query results do not match expected items.";
+            System.out.println(errorMessage);
+            throw new RuntimeException(errorMessage);
         }
-
-        System.out.println("Query succeeded with all expected items\n");
     }
 }

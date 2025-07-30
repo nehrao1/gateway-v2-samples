@@ -24,11 +24,12 @@ src/
 │   │   └── org/
 │   │       └── example/
 │   │           ├── Customer.java               # Data model class
-│   │           ├── Main.java                   # Application entry point
-│   │           ├── GatewayV2CrudSuite.java     # Suite for performing CRUD operations
-│   │           ├── GatewayV2QuerySuite.java    # Suite for performing query operations
 │   │           ├── GatewayV2BatchSuite.java    # Suite for performing batch operations
 │   │           ├── GatewayV2BulkSuite.java     # Suite for performing bulk operations
+│   │           ├── GatewayV2CrudSuite.java     # Suite for performing CRUD operations
+│   │           ├── GatewayV2QuerySuite.java    # Suite for performing query operations
+│   │           ├── Main.java                   # Application entry point
+│   │           ├── Utils.java                  # Utils
 │   └── resources/
 │       └── simplelogger.properties             # Logging configuration
 ```
