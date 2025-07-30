@@ -93,6 +93,9 @@ public class GatewayV2BatchSuite {
                 System.out.println(errorMessage);
                 throw new RuntimeException(errorMessage);
             }
+
+            // Validate that the operation used the Gateway 2.0 endpoint
+            Utils.validateThinClientEndpointUsed(response.getCosmosDiagnostics());
         } else {
             String errorMessage = "Query execution failed";
             System.out.println(errorMessage);

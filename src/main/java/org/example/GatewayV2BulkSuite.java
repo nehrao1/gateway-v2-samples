@@ -32,6 +32,9 @@ public class GatewayV2BulkSuite {
                 if (response.getResponse().getStatusCode() != 201) {
                     throw new RuntimeException("Expected status code 201, but got " + response.getResponse().getStatusCode());
                 }
+
+                // Validate that the operation used the Gateway 2.0 endpoint
+                Utils.validateThinClientEndpointUsed(response.getResponse().getCosmosDiagnostics());
             }
 
             System.out.println("Bulk operations executed successfully.");
