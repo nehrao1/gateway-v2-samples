@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 package org.example;
 
 import com.azure.cosmos.CosmosAsyncContainer;
@@ -8,10 +10,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.util.*;
 
 class GatewayV2QuerySuite {
-    static Customer customer1 = new Customer("1", "1", "John Doe", "Seattle");
-    static Customer customer2 = new Customer("2", "2", "Sarah Smith", "Seattle");
-    static Customer customer3 = new Customer("3", "3", "Joseph White", "Chicago");
-    static Customer customer4 = new Customer("4", "4", "Jason Brown", "Los Angeles");
+    static Customer customer1 = new Customer("1", "pk1", "John Doe", "Seattle");
+    static Customer customer2 = new Customer("2", "pk1", "Sarah Smith", "Seattle");
+    static Customer customer3 = new Customer("3", "pk3", "Joseph White", "Chicago");
+    static Customer customer4 = new Customer("4", "pk4", "Jason Brown", "Los Angeles");
 
     static List<Customer> customers = Arrays.asList(customer1, customer2, customer3, customer4);
 
@@ -54,14 +56,14 @@ class GatewayV2QuerySuite {
     private static void executeSelectPartitionKeyQuery(CosmosAsyncContainer container) {
         String query = "select * from c WHERE c.partitionKey=@id";
         SqlQuerySpec querySpec = new SqlQuerySpec(query);
-        querySpec.setParameters(Arrays.asList(new SqlParameter("@id", "1")));
-        CosmosQueryRequestOptions requestOptions = new CosmosQueryRequestOptions().setPartitionKey(new PartitionKey("1"));
+        querySpec.setParameters(Arrays.asList(new SqlParameter("@id", "pk1")));
+        CosmosQueryRequestOptions requestOptions = new CosmosQueryRequestOptions().setPartitionKey(new PartitionKey("pk1"));
         FeedResponse<Customer> response = container
                 .queryItems(querySpec, requestOptions, Customer.class)
                 .byPage()
                 .blockFirst();
 
-        validateQuery(response.getResults(), Arrays.asList(customer1));
+        validateQuery(response.getResults(), Arrays.asList(customer1, customer2));
     }
 
     private static void executeSelectCustomersInSeattleQuery(CosmosAsyncContainer container) {
